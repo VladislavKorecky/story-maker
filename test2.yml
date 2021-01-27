@@ -1,0 +1,14 @@
+[
+  {
+    id: 0,
+    text: "Select option.",
+    options: ["Hi.", "Welcome to another episode of I don't know what the fuck I'm doing!", "What's up gamers!!!!!"],
+    actions: [1, 1, 1],
+    variables: [["epicGamer", False], ["epicGamer", True], ["epicGamer", True]]
+  },
+  {
+    id: 1,
+    text: "\"You are epic gamer\" is {epicGamer}",
+    options: []
+  }
+]
