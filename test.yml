@@ -1,0 +1,30 @@
+[
+  {
+    id: 0,
+    text: "Which one is better?",
+    options: ["IOS", "Android"],
+    actions: [1, 2]
+  },
+  {
+    id: 1,
+    text: "Are you sure about your choice?",
+    options: ["Yes!", "No, I missed click!"],
+    actions: [3, 0]
+  },
+  {
+    id: 2,
+    text: "Are you sure about your choice?",
+    options: ["Yes!", "No, I missed click!"],
+    actions: [4, 0]
+  },
+  {
+    id: 3,
+    text: "I like IOS too!",
+    options: []
+  },
+  {
+    id: 4,
+    text: "I like IOS but Android is good too.",
+    options: []
+  }
+]
