@@ -19,6 +19,15 @@ class StoryManager:
                 self.load_frame()
 
     def load_frame(self):
+        # check for "if" key
+        if "if" in self.frame:
+            if self.frame.get("if"):
+                statements = self.frame.get("statements")
+                for statement in statements:
+                    if self.variables.get(statement[0]) == statement[1]:
+                        self.setFrame(statement[2])
+                        return
+
         # print text
         text = self.frame.get("text")
 
@@ -27,7 +36,8 @@ class StoryManager:
             if text[ch_index] == '{':
                 var_start_index = ch_index
             elif text[ch_index] == '}':
-                text = text.replace(text[var_start_index:ch_index + 1], str(self.variables.get(text[var_start_index + 1:ch_index])))
+                text = text.replace(text[var_start_index:ch_index + 1],
+                                    str(self.variables.get(text[var_start_index + 1:ch_index])))
 
         print(text)
 
@@ -53,4 +63,9 @@ class StoryManager:
             self.variables[var[action][0]] = var[action][1]
 
         # set next frame
-        self.frame = self.story[self.frame.get("actions")[action]]
+        self.setFrame(self.frame.get("actions")[action])
+
+    def setFrame(self, id):
+        for frame in self.story:
+            if frame.get("id") == id:
+                self.frame = frame
