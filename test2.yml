@@ -1,14 +1,24 @@
 [
-  {
-    id: 0,
-    text: "Select option.",
-    options: ["Hi.", "Welcome to another episode of I don't know what the fuck I'm doing!", "What's up gamers!!!!!"],
-    actions: [1, 1, 1],
-    variables: [["epicGamer", False], ["epicGamer", True], ["epicGamer", True]]
-  },
-  {
-    id: 1,
-    text: "\"You are epic gamer\" is {epicGamer}",
-    options: []
-  }
+    {
+        id: 0,
+        text: "Select option.",
+        options: ["Hi.", "Welcome to another episode of I don't know what the fuck I'm doing!", "What's up gamers!!!!!"],
+        actions: [1, 1, 1],
+        variables: [["epicGamer", False], ["epicGamer", True], ["epicGamer", True]]
+    },
+    {
+        id: 1,
+        if: True,
+        statements: [["epicGamer", False, 2], ["epicGamer", True, 3]]
+    },
+    {
+        id: 2,
+        text: "You're not an epic gamer but a big disappointment.",
+        options: []
+    },
+    {
+        id: 3,
+        text: "You're an epic gamer like me, I'm proud of you!",
+        options: []
+    }
 ]
