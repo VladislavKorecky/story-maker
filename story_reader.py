@@ -13,7 +13,7 @@ class StoryManager:
             self.story = yaml.load(file, Loader=yaml.FullLoader)
 
             # load first frame
-            self.frame = self.story[0]
+            self.set_frame(0)
 
             while self.frame is not None:
                 self.load_frame()
@@ -25,20 +25,20 @@ class StoryManager:
                 statements = self.frame.get("statements")
                 for statement in statements:
                     if self.variables.get(statement[0]) == statement[1]:
-                        self.setFrame(statement[2])
+                        self.set_frame(statement[2])
                         return
 
         # print text
         text = self.frame.get("text")
 
         var_start_index = None
-        text_length = len(text)
-        for ch_index in range(text_length):
+        ch_index = 0
+        while ch_index < len(text):
             if text[ch_index] == '{':
                 var_start_index = ch_index
             elif text[ch_index] == '}':
                 text = text.replace(text[var_start_index:ch_index + 1], str(self.variables.get(text[var_start_index + 1:ch_index])))
-                text_length = len(text)
+            ch_index += 1
 
         print(text)
 
@@ -61,12 +61,20 @@ class StoryManager:
         # handle variables
         if "variables" in self.frame:
             var = self.frame.get("variables")
+
+            # arithmetics
+            if type(var[action][1]) is str:
+                try:
+                    var[action][1] = eval(var[action][1])
+                except:
+                    pass
+
             self.variables[var[action][0]] = var[action][1]
 
         # set next frame
-        self.setFrame(self.frame.get("actions")[action])
+        self.set_frame(self.frame.get("actions")[action])
 
-    def setFrame(self, id):
+    def set_frame(self, id):
         for frame in self.story:
             if frame.get("id") == id:
                 self.frame = frame
