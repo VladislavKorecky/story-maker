@@ -32,12 +32,13 @@ class StoryManager:
         text = self.frame.get("text")
 
         var_start_index = None
-        for ch_index in range(len(text)):
+        text_length = len(text)
+        for ch_index in range(text_length):
             if text[ch_index] == '{':
                 var_start_index = ch_index
             elif text[ch_index] == '}':
-                text = text.replace(text[var_start_index:ch_index + 1],
-                                    str(self.variables.get(text[var_start_index + 1:ch_index])))
+                text = text.replace(text[var_start_index:ch_index + 1], str(self.variables.get(text[var_start_index + 1:ch_index])))
+                text_length = len(text)
 
         print(text)
 
