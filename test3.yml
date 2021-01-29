@@ -1,0 +1,14 @@
+[
+    {
+        id: 0,
+        text: "What is better?",
+        options: ["Orange juice", "Milk"],
+        actions: [1, 1],
+        variables: [["points", 0], ["points", 9/9]]
+    },
+    {
+        id: 1,
+        text: "You scored {points} points.",
+        options: []
+    }
+]
